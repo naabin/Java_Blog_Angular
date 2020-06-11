@@ -29,7 +29,7 @@ steps:
     buildVersionToDownload: 'latest'
     downloadType: 'single'
     artifactName: 'Angular-Build'
-    downloadPath: '$(System.ArtifactsDirectory)/src/dist'
+    downloadPath: '$(System.ArtifactsDirectory)'
   displayName: 'npm install and build'
   
 
