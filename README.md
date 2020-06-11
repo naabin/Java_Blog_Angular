@@ -1,1 +1,1 @@
-https://dev.azure.com/naabin0187/Java-Blogging/_apis/build/status/naabin.Java_Blog_Angular?branchName=master
+[![Build Status](https://dev.azure.com/naabin0187/Java-Blogging/_apis/build/status/naabin.Java_Blog_Angular?branchName=master&jobName=Job)](https://dev.azure.com/naabin0187/Java-Blogging/_build/latest?definitionId=7&branchName=master)
