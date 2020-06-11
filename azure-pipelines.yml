@@ -27,8 +27,8 @@ steps:
     command: custom
     customCommand: run build -- $(ngBuildConfiguration)
 
-- task: PublishPipelineArtifact@0
+- task: PublishBuildArtifacts@1
   inputs:
     artifactName: 'angular-build'
-    targetPath: '$(Build.ArtifactStagingDirectory)'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     
