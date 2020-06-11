@@ -10,24 +10,19 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
-  
 
-- script: |
-    npm install -g @angular/cli
-    npm install
-    ng build --prod
-  
-
-- task: DownloadPipelineArtifact@2
+- task: Npm@1
+  displayName: 'npm install'
   inputs:
-    buildType: 'specific'
-    project: '1968bc11-10a5-49ed-99da-9c0a221981cf'
-    definition: '7'
-    specificBuildWithTriggering: true
-    buildVersionToDownload: 'latest'
-    artifactName: 'Angular-Build'
-    targetPath: '$(Pipeline.Workspace)'
+    command: install
+
+- task: Npm@1
+  displayName: 'Build Angular'
+  inputs:
+    command: custom
+    customCommand: run build -- --prod
+- task: PublishPipelineArtifact@0
+  inputs:
+    artifactName: 'angular-build'
+    targetPath: 'src/dist'
+    
