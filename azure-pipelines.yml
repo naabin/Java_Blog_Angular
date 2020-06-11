@@ -21,10 +21,15 @@ steps:
     npm install -g @angular/cli
     npm install
     ng build --prod
-  workingDirectory: src/dist
+- task: DownloadBuildArtifacts@0
+  inputs:
+    buildType: 'specific'
+    project: '1968bc11-10a5-49ed-99da-9c0a221981cf'
+    pipeline: '7'
+    buildVersionToDownload: 'latest'
+    downloadType: 'single'
+    artifactName: 'Angular-Build'
+    downloadPath: '$(System.ArtifactsDirectory)/src/dist'
   displayName: 'npm install and build'
   
-- task: PublishPipelineArtifact@0
-  inputs:
-    artifactName: 'angular-build'
-    targetPath: 'src/dist'
+
