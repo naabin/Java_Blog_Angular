@@ -27,6 +27,11 @@ steps:
     command: custom
     customCommand: run build -- $(ngBuildConfiguration)
 
+- task: CopyFiles@2
+  inputs:
+    Contents: 'dist/**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
 - task: PublishBuildArtifacts@1
   inputs:
     artifactName: 'angular-build'
