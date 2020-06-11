@@ -5,9 +5,14 @@
 
 trigger:
 - master
+- releases/*
 
 pool:
   vmImage: 'ubuntu-latest'
+
+variables:
+  buildConfiguration: 'Release'
+  ngBuildConfiguration: '--prod'
 
 steps:
 
@@ -20,9 +25,10 @@ steps:
   displayName: 'Build Angular'
   inputs:
     command: custom
-    customCommand: run build -- --prod
+    customCommand: run build -- $(ngBuildConfiguration)
+
 - task: PublishPipelineArtifact@0
   inputs:
     artifactName: 'angular-build'
-    targetPath: 'src/dist'
+    targetPath: '$(Build.ArtifactStagingDirectory)'
     
