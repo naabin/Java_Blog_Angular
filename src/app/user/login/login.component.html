@@ -1,0 +1,23 @@
+<div class="ui middle aligend center aligned grid">
+    <div class="column">
+        <h2 class="image header">
+            <div class="ui image header">
+                <div class="content">
+                    Login
+                </div>
+            </div>
+        </h2>
+        <div class="container">
+            <form [formGroup]="loginForm" (submit)="loginSubmit()">
+                <div class="field">
+                    <app-input [label]="'Email'" [control]="loginForm.get('email')" [inputType]="'email'"></app-input>
+                </div>
+                <div class="field">
+                    <app-input [label]="'Password'" [control]="loginForm.get('password')" [inputType]="'password'">
+                    </app-input>
+                </div>
+                <button [disabled]="loginForm.invalid" type="submit" class="primary ui center button">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
