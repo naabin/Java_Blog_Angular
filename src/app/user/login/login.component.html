@@ -16,7 +16,8 @@
                     <app-input [label]="'Password'" [control]="loginForm.get('password')" [inputType]="'password'">
                     </app-input>
                 </div>
-                <button [disabled]="loginForm.invalid" type="submit" class="primary ui center button">Login</button>
+                <!-- <button [disabled]="loginForm.invalid" type="submit" class="primary ui center button">Login</button> -->
+                <app-loading-button [invalid]="loginForm.invalid" [loading]="loading" [label]="'Login'" ></app-loading-button>
             </form>
         </div>
     </div>

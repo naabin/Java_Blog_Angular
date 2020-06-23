@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { DEVELOPMENT_URL } from 'src/app/util/remoteUrl';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Config } from 'protractor';
+import { User } from 'src/app/models/blog.model';
+import { tap } from 'rxjs/operators';
 
 export interface LoginResponse {
   id: number,
@@ -34,11 +36,31 @@ export class UserService {
 
   private BASEURL = DEVELOPMENT_URL;
 
-  constructor(private http: HttpClient) { }
+  private currentUserSubject: BehaviorSubject<String>
+  private currentUser: Observable<String>
+
+  constructor(private http: HttpClient) { 
+    const token = localStorage.getItem('token');
+    this.currentUserSubject = new BehaviorSubject<String>(token ? token : null);
+    this.currentUser = this.currentUserSubject.asObservable();
+  }
 
 
-  login(login: LoginRequest): Observable<HttpResponse<LoginRequest>> {
-    return this.http.post<LoginRequest>(`${this.BASEURL}/auth/login`, login, {observe: 'response'}) ;
+  public get currentUserValue(): BehaviorSubject<String> {
+    return this.currentUserSubject;
+  }
+
+
+  login(login: LoginRequest): Observable<HttpResponse<User>> {
+    return this.http.post<User>(`${this.BASEURL}/auth/login`, login, {observe: 'response'})
+    .pipe(
+        tap(res => {
+          const token = res.headers.get('token');
+          this.currentUserSubject.next(token);
+          localStorage.setItem('token', token),
+          localStorage.setItem('userId', JSON.stringify(res.body.id))
+        })
+    );
   }
 
   signup(signup: SignupRequest): Observable<any> {

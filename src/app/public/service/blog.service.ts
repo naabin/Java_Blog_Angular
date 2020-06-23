@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DEVELOPMENT_URL } from 'src/app/util/remoteUrl';
 import { HttpClient } from '@angular/common/http';
-import { Blog } from 'src/app/models/blog.model';
+import { Blog, Tag } from 'src/app/models/blog.model';
 import { Observable } from 'rxjs';
 
 export interface BlogResponse {
@@ -22,6 +22,15 @@ export interface BlogResponse {
   empty: boolean;
 }
 
+ export interface BlogRequest {
+   title: string;
+   content: string;
+   tags: {
+     name: string;
+   }[];
+
+ }
+
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +41,7 @@ export class BlogService {
 
   constructor(private http: HttpClient) { }
 
-  getBlogs(pageNumber: number = 0, pageSize: number = 1): Observable<BlogResponse>{
+  getBlogs(pageNumber: number = 0, pageSize: number = 10): Observable<BlogResponse>{
     return this.http.get<BlogResponse>(`${this.BASE_URL}/blog`, 
     {params: 
       {
@@ -43,8 +52,8 @@ export class BlogService {
     );
   }
 
-  saveBlog(blog: Blog): Observable<Blog>{
-    return this.http.post<Blog>(`${this.BASE_URL}/blog`, blog);
+  saveBlog(blog: BlogRequest, userId: string): Observable<Blog>{
+    return this.http.post<Blog>(`${this.BASE_URL}/blog`, JSON.stringify(blog), {params: {userId}});
   }
 
   updateBlog(id: number, blog: Blog): Observable<Blog>{

@@ -9,7 +9,6 @@ import { FormControl } from '@angular/forms';
 export class InputComponent implements OnInit {
 
   constructor() { }
-
   @Input('label') label: string;
   @Input('control') control: FormControl;
   @Input() inputType: string;

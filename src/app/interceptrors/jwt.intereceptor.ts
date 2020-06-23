@@ -10,7 +10,7 @@ export class JwtInterceptor implements HttpInterceptor {
     constructor(public tokenService: TokenService){}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const token = this.tokenService.bearerToken;
+        const token = localStorage.getItem('token');
         if(token){
             req = req.clone({
                 setHeaders: {

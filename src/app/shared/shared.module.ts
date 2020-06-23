@@ -7,9 +7,12 @@ import { MatChipsModule } from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import { InputComponent } from './input/input.component';
+import { LoadingButtonComponent } from './loading-button/loading-button.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+
 
 @NgModule({
-  declarations: [TagComponent, InputComponent],
+  declarations: [TagComponent, InputComponent, LoadingButtonComponent, NavBarComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -22,7 +25,9 @@ import { InputComponent } from './input/input.component';
   ],
   exports:[
     TagComponent,
-    InputComponent
+    InputComponent,
+    LoadingButtonComponent,
+    NavBarComponent,
   ]
 })
 export class SharedModule { }

@@ -14,7 +14,7 @@ import { Tag } from 'src/app/models/blog.model';
 export class TagComponent implements OnInit {
 
   @Input('control') control: FormControl;
-  @Input("tags")tags: Tag[];
+  @Input("tags")tags: {name:string}[];
   readonly seperatorKeyCodes: number[] = [ENTER, COMMA];
   removable = true;
   
@@ -26,7 +26,7 @@ export class TagComponent implements OnInit {
     const value = event.value;
 
     if((value || '').trim()){
-      this.tags.push({name: value.trim(), id: Math.ceil(Math.random() * 1000)});
+      this.tags.push({name: value.trim()});
     }
     if(input){
       input.value = '';

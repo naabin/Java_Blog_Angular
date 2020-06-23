@@ -8,3 +8,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-form-field{
     width: 100%;
 }
+
+ iframe{
+    width: 100%;
+    min-height:450px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
