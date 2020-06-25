@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { DEVELOPMENT_URL } from 'src/app/util/remoteUrl';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { Config } from 'protractor';
+import { Observable, BehaviorSubject, empty } from 'rxjs';
 import { User } from 'src/app/models/blog.model';
 import { tap } from 'rxjs/operators';
 
@@ -36,17 +35,17 @@ export class UserService {
 
   private BASEURL = DEVELOPMENT_URL;
 
-  private currentUserSubject: BehaviorSubject<String>
+  private currentUserSubject: BehaviorSubject<string>
   private currentUser: Observable<String>
 
   constructor(private http: HttpClient) { 
     const token = localStorage.getItem('token');
-    this.currentUserSubject = new BehaviorSubject<String>(token ? token : null);
+    this.currentUserSubject = new BehaviorSubject<string>(token ? token : null);
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
 
-  public get currentUserValue(): BehaviorSubject<String> {
+  public get currentUserValue(): BehaviorSubject<string> {
     return this.currentUserSubject;
   }
 
@@ -65,6 +64,13 @@ export class UserService {
 
   signup(signup: SignupRequest): Observable<any> {
     return this.http.post<any>(`${this.BASEURL}/auth/signup`, JSON.stringify(signup));
+  }
+
+  logout(){
+    localStorage.removeItem('userId');
+    localStorage.removeItem('token');
+    this.currentUserSubject.next(null);
+    return empty();
   }
 
 

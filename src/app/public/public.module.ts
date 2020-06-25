@@ -6,10 +6,11 @@ import { QuillModule } from 'ngx-quill';
 import { BlogViewComponent } from './blog-view/blog-view.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
+import { AboutMeComponent } from './about-me/about-me.component';
 
 
 @NgModule({
-  declarations: [BlogViewComponent],
+  declarations: [BlogViewComponent, AboutMeComponent],
   imports: [
     CommonModule,
     PublicRoutingModule,

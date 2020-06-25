@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { QuizzesModule } from './quizzes/quizzes.module';
 
 
 const routes: Routes = [
@@ -13,7 +14,15 @@ const routes: Routes = [
   },
   {
     path:'user',
-    loadChildren: () => import('./user/user.module').then(m => m.UserModule)
+    loadChildren: () => import('./user/user.module').then(m => m.UserModule),
+  }, 
+  {
+    path: 'hacker-news',
+    loadChildren: () => import('./hacker-news/hacker-news.module').then(m => m.HackerNewsModule)
+  },
+  {
+    path: 'quiz',
+    loadChildren: () => import('./quizzes/quizzes.module').then(m => m.QuizzesModule)
   }
 ];
 

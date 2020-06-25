@@ -8,6 +8,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './interceptrors/jwt.intereceptor';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { SharedModule } from './shared/shared.module';
+import { HackerNewsModule } from './hacker-news/hacker-news.module';
+import { QuizzesModule } from './quizzes/quizzes.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { SharedModule } from './shared/shared.module';
     HttpClientModule,
     MatToolbarModule,
     SharedModule,
+    HackerNewsModule,
+    QuizzesModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}

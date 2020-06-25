@@ -3,12 +3,13 @@
         <div class="col-sm-12 m-2">
             <div *ngFor="let item of blogs">
                 <h2 class="text-center">{{item.title}}</h2>
-                <mat-chip-list>
-                    <mat-chip *ngFor="let tag of item.tags" [selectable]="true" [removable]="true">
-                        {{tag.name}}
-                        <mat-icon matChipRemove>cancel</mat-icon>
-                    </mat-chip>
-                </mat-chip-list>
+                <div class="d-flex justify-content-center">
+                    <mat-chip-list>
+                        <mat-chip *ngFor="let tag of item.tags" [selectable]="true" [removable]="true">
+                            {{tag.name}}
+                        </mat-chip>
+                    </mat-chip-list>
+                </div>
                 <quill-view [modules]="{syntax: true}" [content]="item.content"></quill-view>
                 <hr class="featurette-divider">
             </div>

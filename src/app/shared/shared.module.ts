@@ -9,6 +9,8 @@ import {MatInputModule} from '@angular/material/input';
 import { InputComponent } from './input/input.component';
 import { LoadingButtonComponent } from './loading-button/loading-button.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { SharedRouterModule } from './shared-module.routing';
+
 
 
 @NgModule({
@@ -21,6 +23,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
+    SharedRouterModule,
   
   ],
   exports:[
@@ -28,6 +31,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     InputComponent,
     LoadingButtonComponent,
     NavBarComponent,
+
   ]
 })
 export class SharedModule { }
