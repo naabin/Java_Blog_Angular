@@ -14,5 +14,8 @@
             [matChipInputAddOnBlur]="true"
             (matChipInputTokenEnd)="add($event)"
         >
+        <div *ngIf="control.errors && control.touched && control.dirty" class="invalid-feedback">
+            <p *ngIf="control.errors.tagExists">Tag already exists.</p>
+        </div>
     </mat-chip-list>
 </mat-form-field>

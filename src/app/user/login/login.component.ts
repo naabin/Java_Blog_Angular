@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../service/user.service';
-import { TokenService } from 'src/app/util/token/token.service';
 import { Router } from '@angular/router';
-import { getMatIconFailedToSanitizeLiteralError } from '@angular/material/icon';
+import { NotificationService } from 'src/app/shared/services/notification-service/notification.service';
 
 
 @Component({
@@ -20,7 +19,10 @@ export class LoginComponent implements OnInit {
     'password': new FormControl('', {validators: [Validators.required, Validators.minLength(6)]})
   });
 
-  constructor(private userService: UserService, public toekenService: TokenService, private router: Router) { }
+  constructor(
+      private userService: UserService, 
+      private notificationService: NotificationService,
+      private router: Router) { }
 
   ngOnInit() {
   }
@@ -32,11 +34,14 @@ export class LoginComponent implements OnInit {
     this.userService.login({email, password}).subscribe(
       data => {
         if(data){
-          this.toekenService.bearerToken = data.headers.get('token');
           this.loading = false;
+          this.notificationService.addSuccess('Welcome to my small world');
           this.router.navigateByUrl('/admin');
         }
-      }, () => console.error
+      }, () => {
+        this.notificationService.addError('Login error. It could be someone else credentials. Try hacking');
+        this.loading = false;
+      }
     );
   }
 

@@ -1,0 +1,14 @@
+<mat-tab-group animationDuration="0ms">
+        <mat-tab label="Editor"><app-editor></app-editor></mat-tab>
+        <mat-tab label ="Draft">
+            <app-blog-editor (getBlogId)="getId($event)" [blogs]="draftPosts">
+                <app-editor *ngIf="blog" [blog]="blog"  ></app-editor>
+            </app-blog-editor>
+        </mat-tab>
+        <mat-tab label ="Published">
+            <app-blog-editor (getBlogId)="getId($event)" [blogs]="publishedPosts">
+                <app-editor *ngIf="blog" [blog]="blog"  ></app-editor>
+            </app-blog-editor>
+        </mat-tab>
+</mat-tab-group>
+

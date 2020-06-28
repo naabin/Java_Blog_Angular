@@ -3,7 +3,13 @@
 @import 'semantic-ui-css/semantic.css';
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { 
+  margin: 0; 
+  font-family:'Times New Roman', Times, serif, "Helvetica Neue", sans-serif; 
+}
+ p{
+   font-size: 20px;
+ }
 
 .mat-form-field{
     width: 100%;
@@ -15,4 +21,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     height: auto;
     display: block;
     margin: 0 auto;
+  }
+
+  pre{
+    font-size: 17px;
   }

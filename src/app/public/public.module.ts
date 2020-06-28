@@ -7,6 +7,7 @@ import { BlogViewComponent } from './blog-view/blog-view.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { AboutMeComponent } from './about-me/about-me.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { AboutMeComponent } from './about-me/about-me.component';
     QuillModule.forRoot(),
     MatChipsModule,
     MatIconModule,
+    SharedModule,
   ],
   exports: [BlogViewComponent]
 })

@@ -12,11 +12,13 @@ export class BlogViewComponent implements OnInit {
   constructor(private blogService: BlogService) { }
 
   blogs: Blog[];
+  blogLoading = true;
 
   ngOnInit() {
-    this.blogService.getBlogs().subscribe(data => {
+    this.blogService.getPublishedBlogs().subscribe(data => {
       console.log(data.content);
       this.blogs = data.content;
+      this.blogLoading = false;
     })
   }
 

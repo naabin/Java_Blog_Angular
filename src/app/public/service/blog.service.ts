@@ -28,21 +28,21 @@ export interface BlogResponse {
    tags: {
      name: string;
    }[];
-
+   published: boolean
  }
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class BlogService {
+export class  BlogService {
 
   private BASE_URL = DEVELOPMENT_URL;
 
   constructor(private http: HttpClient) { }
 
-  getBlogs(pageNumber: number = 0, pageSize: number = 10): Observable<BlogResponse>{
-    return this.http.get<BlogResponse>(`${this.BASE_URL}/blog`, 
+  getPublishedBlogs(pageNumber: number = 0, pageSize: number = 10): Observable<BlogResponse>{
+    return this.http.get<BlogResponse>(`${this.BASE_URL}/blog/published`, 
     {params: 
       {
         pageNumber: pageNumber.toString(),
@@ -52,11 +52,25 @@ export class BlogService {
     );
   }
 
-  saveBlog(blog: BlogRequest, userId: string): Observable<Blog>{
-    return this.http.post<Blog>(`${this.BASE_URL}/blog`, JSON.stringify(blog), {params: {userId}});
+  getAllBlogs(pageNumber: number=0, pageSize: number=10){
+    return this.http.get<BlogResponse>(`${this.BASE_URL}/blog`,
+    {
+      params: {
+        pageNumber: pageNumber.toString(),
+        pageSize: pageSize.toString()
+      }
+    })
   }
 
-  updateBlog(id: number, blog: Blog): Observable<Blog>{
-    return this.http.put<Blog>(`${this.BASE_URL}/blog/${id}`, blog);
+  getBlogById(id: number): Observable<Blog>{
+    return this.http.get<Blog>(`${this.BASE_URL}/blog/${id}`);
+  }
+
+  upateBlog(blogId: number, blog: BlogRequest){
+    return this.http.put<Blog>(`${this.BASE_URL}/blog/${blogId}`, JSON.stringify(blog));
+  }
+
+  saveBlog(blog: BlogRequest, userId: string): Observable<Blog>{
+    return this.http.post<Blog>(`${this.BASE_URL}/blog`, JSON.stringify(blog), {params: {userId}});
   }
 }

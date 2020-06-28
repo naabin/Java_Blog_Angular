@@ -5,6 +5,7 @@ export class Blog {
     createdDate: string;
     tags: Tag[];
     user: User
+    published: boolean;
 }
 
 export class Tag {

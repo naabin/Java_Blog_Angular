@@ -1,13 +1,17 @@
 
 <div class="container my-2">
+    <h2 class="text-center">Let's create a story</h2>
     <div class="row">
         <div class="col-md-12">
             <form [formGroup]="quilFormGroup" (ngSubmit)="submittedData()">
-                <input class="form-control" formControlName="title" placeholder="Blog Title">
-                <app-tag [tags]="tags" [control]="quilFormGroup.get('tag')"></app-tag>
-                <quill-editor formControlName="content">
+                <input [value]="blog ? blog.title : ''" class="form-control" formControlName="title" placeholder="Blog Title">
+                <app-tag [tags]="blog ? blog.tags : tags" [control]="quilFormGroup.get('tag')"></app-tag>
+                <quill-editor *ngIf="blog && blog.content"  [(ngModel)]="blog.content" formControlName="content">
                 </quill-editor>
-                <button class="basic ui button" type="submit">submit</button>
+                <quill-editor *ngIf="!blog"  formControlName="content">
+                </quill-editor>
+                <mat-checkbox [checked]="blog ? blog.published: false"  formControlName="publish" >Publish</mat-checkbox>
+                <button class="fluid ui primary button" type="submit">Submit</button>
             </form>
         </div>
     </div>

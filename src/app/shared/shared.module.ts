@@ -10,11 +10,14 @@ import { InputComponent } from './input/input.component';
 import { LoadingButtonComponent } from './loading-button/loading-button.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SharedRouterModule } from './shared-module.routing';
+import { PlaceholderComponent } from './placeholder/placeholder.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { BlogEditorComponent } from './blog-editor/blog-editor.component';
 
 
 
 @NgModule({
-  declarations: [TagComponent, InputComponent, LoadingButtonComponent, NavBarComponent],
+  declarations: [TagComponent, InputComponent, LoadingButtonComponent, NavBarComponent, PlaceholderComponent, NotificationsComponent, BlogEditorComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -31,6 +34,9 @@ import { SharedRouterModule } from './shared-module.routing';
     InputComponent,
     LoadingButtonComponent,
     NavBarComponent,
+    PlaceholderComponent,
+    NotificationsComponent,
+    BlogEditorComponent,
 
   ]
 })

@@ -1,0 +1,12 @@
+    <div class="ui centered grid m-2">
+        <div class="ui five wide column">
+            <div class="ui celled list">
+                <div *ngFor="let blog of blogs" class="item">
+                    <a (click)="onClick(blog.id)" class="header">{{blog.title}}</a>
+                </div>
+            </div>
+        </div>
+        <div class="ui ten wide column">
+            <ng-content></ng-content>
+        </div>
+    </div>
