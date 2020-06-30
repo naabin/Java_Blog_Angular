@@ -41,7 +41,7 @@ export class EditorComponent implements OnInit {
     const userId = JSON.parse(localStorage.getItem('userId'));
     const title = this.quilFormGroup.get('title').value;
     const content = this.quilFormGroup.get('content').value;
-    const publish = this.quilFormGroup.get('publish').value
+    const publish = this.quilFormGroup.get('publish').value || false;
     if(this.blog){
       this.blogService.upateBlog(this.blog.id, {title, content, published: publish, tags: this.blog.tags}).subscribe(data => {
         this.router.navigateByUrl('/admin/dashboard');

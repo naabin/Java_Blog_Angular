@@ -52,7 +52,7 @@ export class  BlogService {
     );
   }
 
-  getAllBlogs(pageNumber: number=0, pageSize: number=10){
+  getAllBlogs(pageNumber: number=0, pageSize: number=10): Observable<BlogResponse>{
     return this.http.get<BlogResponse>(`${this.BASE_URL}/blog`,
     {
       params: {
@@ -71,6 +71,6 @@ export class  BlogService {
   }
 
   saveBlog(blog: BlogRequest, userId: string): Observable<Blog>{
-    return this.http.post<Blog>(`${this.BASE_URL}/blog`, JSON.stringify(blog), {params: {userId}});
+    return this.http.post<Blog>(`${this.BASE_URL}/blog`, JSON.stringify(blog), {params: {userId: userId}});
   }
 }
