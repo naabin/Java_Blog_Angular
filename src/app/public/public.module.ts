@@ -8,10 +8,11 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { AboutMeComponent } from './about-me/about-me.component';
 import { SharedModule } from '../shared/shared.module';
+import { SinglePostViewComponent } from './single-post-view/single-post-view.component';
 
 
 @NgModule({
-  declarations: [BlogViewComponent, AboutMeComponent],
+  declarations: [BlogViewComponent, AboutMeComponent, SinglePostViewComponent],
   imports: [
     CommonModule,
     PublicRoutingModule,

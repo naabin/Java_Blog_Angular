@@ -7,6 +7,13 @@
         </mat-tab>
         <mat-tab label ="Published">
             <app-blog-editor (getBlogId)="getId($event)" [blogs]="publishedPosts">
+                <div>
+                    <img *ngIf="image$ | async as image" class="medium ui image" [src]="image.imageURL" alt="">
+                    <input type="file" #newImage class="basic ui button" name="newImage" enctype="multipart/form-data" (change)="uploadImage(newImage)" accept=".jpg, .jpeg, .png, .gif">
+                    <app-loading-button [loading]="imageLoading" [label]="'Upload'" ></app-loading-button>
+                </div>
+                
+                
                 <app-editor *ngIf="blog" [blog]="blog"  ></app-editor>
             </app-blog-editor>
         </mat-tab>

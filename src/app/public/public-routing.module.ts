@@ -2,17 +2,24 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BlogViewComponent } from './blog-view/blog-view.component';
 import { AboutMeComponent } from './about-me/about-me.component';
+import { SinglePostViewComponent } from './single-post-view/single-post-view.component';
 
 
 const routes: Routes = [
   {
-    path: '',
-    component: BlogViewComponent
+    path: 'aboutme',
+    component: AboutMeComponent,
+    pathMatch: 'full'
   },
   {
-    path: 'aboutme',
-    component: AboutMeComponent
-  }
+    path: ':title/:id/details',
+    component: SinglePostViewComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: '',
+    component: BlogViewComponent,
+  },
 ];
 
 @NgModule({

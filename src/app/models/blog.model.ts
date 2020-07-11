@@ -1,3 +1,5 @@
+import { ImageResponse } from '../shared/services/image-service/image.service';
+
 export class Blog {
     id: number;
     title: string;
@@ -6,6 +8,7 @@ export class Blog {
     tags: Tag[];
     user: User
     published: boolean;
+    image: ImageResponse;
 }
 
 export class Tag {

@@ -22,4 +22,8 @@ export class BlogViewComponent implements OnInit {
     })
   }
 
+  cleanString(title: string){
+    return title.replace(/\s/g, '-');
+  }
+
 }

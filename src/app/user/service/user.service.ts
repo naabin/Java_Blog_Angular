@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { DEVELOPMENT_URL } from 'src/app/util/remoteUrl';
 import { Observable, BehaviorSubject, empty } from 'rxjs';
 import { User } from 'src/app/models/blog.model';
@@ -35,6 +35,12 @@ export class UserService {
 
   private BASEURL = DEVELOPMENT_URL;
 
+  private headers = new HttpHeaders(
+    {
+      'Content-Type': 'application/json'
+    }
+  );
+
   private currentUserSubject: BehaviorSubject<string>
   private currentUser: Observable<String>
 
@@ -51,7 +57,7 @@ export class UserService {
 
 
   login(login: LoginRequest): Observable<HttpResponse<User>> {
-    return this.http.post<User>(`${this.BASEURL}/auth/login`, login, {observe: 'response'})
+    return this.http.post<User>(`${this.BASEURL}/auth/login`, login, {observe: 'response', headers: this.headers},)
     .pipe(
         tap(res => {
           const token = res.headers.get('token');
@@ -63,7 +69,7 @@ export class UserService {
   }
 
   signup(signup: SignupRequest): Observable<any> {
-    return this.http.post<any>(`${this.BASEURL}/auth/signup`, JSON.stringify(signup));
+    return this.http.post<any>(`${this.BASEURL}/auth/signup`, JSON.stringify(signup), {headers: this.headers});
   }
 
   logout(){

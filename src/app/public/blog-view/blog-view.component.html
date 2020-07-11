@@ -1,19 +1,37 @@
-<app-placeholder *ngIf="blogLoading" ></app-placeholder>
-<div class="container">
-    <div class="row">
-        <div *ngIf="blogs" class="col-sm-12 m-2">
-            <div *ngFor="let item of blogs">
-                <h2 class="text-center">{{item.title}}</h2>
-                <div class="d-flex justify-content-center">
-                    <mat-chip-list>
-                        <mat-chip *ngFor="let tag of item.tags" [selectable]="true" [removable]="true">
-                            {{tag.name}}
-                        </mat-chip>
-                    </mat-chip-list>
+<app-placeholder *ngIf="blogLoading"></app-placeholder>
+<!-- <div class="container"> -->
+<div class="ui four column stackable grid">
+    <div *ngIf="blogs" class="ui column centered row">
+        <div *ngFor="let item of blogs" class="ui fluid card column m-2" [routerLink]="['/' + cleanString(item.title), item.id, 'details']">
+            <div class="ui blurring dimmable image">
+                <div class="ui dimmer">
+                    <div class="content">
+                        <div class="center">
+                            <div class="ui inverted button">Read</div>
+                        </div>
+                    </div>
                 </div>
-                <quill-view [modules]="{syntax: true}" [content]="item.content"></quill-view>
-                <hr class="featurette-divider">
+                <div class="image">
+                    <img class="blog-image" *ngIf="item.image && item.image.imageURL; else noImage;" [src]="item.image.imageURL">
+                    <ng-template #noImage>
+                        <img class="blog-image" [src]="'../../../assets/image_placeholder.png'">
+                    </ng-template>
+                </div>
+            </div>
+            <div class="content">
+                <a class="header">{{item.title}}</a>
+                <div class="meta">
+                    <span class="data">Created on {{item.createdDate | date}}</span>
+                </div>
+            </div>
+            <div class="extra-content p-2">
+                <mat-chip-list>
+                    <mat-chip *ngFor="let tag of item.tags" [selectable]="true" [removable]="true">
+                        {{tag.name}}
+                    </mat-chip>
+                </mat-chip-list>
             </div>
         </div>
+        <hr class="featurette-divider">
     </div>
 </div>
