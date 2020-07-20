@@ -9,7 +9,7 @@ import { NewsHomeComponent } from './news-home/news-home.component';
   declarations: [NewsHomeComponent],
   imports: [
     CommonModule,
-    HackerNewsRoutingModule
+    HackerNewsRoutingModule,
   ]
 })
 export class HackerNewsModule { }
